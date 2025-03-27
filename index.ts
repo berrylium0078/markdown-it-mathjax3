@@ -210,11 +210,10 @@ function math_block(
 }
 
 function plugin(md: MarkdownIt, options: any) {
-  let packagesToLoad = AllPackages
-  // Add support for custom packages
-  if (Array.isArray(options.packages)) {
-    packagesToLoad.concat(options.packages);
-  }
+  const packagesToLoad = [
+    ...AllPackages,
+    ...(options?.packages || []),
+  ];
   // Default options
   const documentOptions = {
     InputJax: new TeX({ packages: packagesToLoad,  ...options?.tex }),

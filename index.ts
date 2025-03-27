@@ -210,8 +210,11 @@ function math_block(
 }
 
 function plugin(md: MarkdownIt, options: any) {
+  // Add support for custom packages
+  if (Array.isArray(options.packages)) {
+    AllPackages.push(...options.packages); // Modified!
+  }
   // Default options
-
   const documentOptions = {
     InputJax: new TeX({ packages: AllPackages,  ...options?.tex }),
     OutputJax: new SVG({ fontCache: 'none',  ...options?.svg })

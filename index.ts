@@ -210,13 +210,9 @@ function math_block(
 }
 
 function plugin(md: MarkdownIt, options: any) {
-  const packagesToLoad = [
-    ...AllPackages,
-    ...(options?.packages || []),
-  ];
   // Default options
   const documentOptions = {
-    InputJax: new TeX({ packages: packagesToLoad,  ...options?.tex }),
+    InputJax: new TeX({ packages: [...AllPackages, ...(options?.packages || [])],  ...options?.tex }),
     OutputJax: new SVG({ fontCache: 'none',  ...options?.svg })
   }
   const convertOptions = {

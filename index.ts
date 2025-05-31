@@ -209,11 +209,34 @@ function math_block(
   return true;
 }
 
+function getPackages(options: any): string[] {
+  if (options?.tex?.packages === undefined) {
+    return AllPackages;
+  }
+  const tex = options.tex;
+  if (Array.isArray(tex.packages)) {
+    return tex.packages;
+  }
+
+  const plus = tex.packages['[+]'] ?? [];
+  const minus = new Set(tex.packages['[-]'] ?? []);
+
+  const combined = [...AllPackages, ...plus];
+  const result: string[] = [];
+  for (const pkg of combined) {
+    if (!minus.has(pkg)) {
+      result.push(pkg);
+    }
+  }
+  // remove duplicates
+  return Array.from(new Set(result));
+}
+
 function plugin(md: MarkdownIt, options: any) {
   // Default options
 
   const documentOptions = {
-    InputJax: new TeX({ packages: AllPackages,  ...options?.tex }),
+    InputJax: new TeX({...options?.tex, packages: getPackages(options)}),
     OutputJax: new SVG({ fontCache: 'none',  ...options?.svg })
   }
   const convertOptions = {

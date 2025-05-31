@@ -213,18 +213,19 @@ function getPackages(options: any): string[] {
   if (options?.tex?.packages === undefined) {
     return AllPackages;
   }
-  const tex = options.tex;
-  if (Array.isArray(tex.packages)) {
-    return tex.packages;
+  const packages = options.tex.packages;
+  if (Array.isArray(packages)) {
+    // remove duplicates
+    return Array.from(new Set(packages));
   }
 
-  const plus = tex.packages['[+]'] ?? [];
-  const minus = new Set(tex.packages['[-]'] ?? []);
+  const packages_to_add = packages['[+]'] ?? [];
+  const packages_to_remove = new Set(packages['[-]'] ?? []);
 
-  const combined = [...AllPackages, ...plus];
+  const combined = [...AllPackages, ...packages_to_add];
   const result: string[] = [];
   for (const pkg of combined) {
-    if (!minus.has(pkg)) {
+    if (!packages_to_remove.has(pkg)) {
       result.push(pkg);
     }
   }

@@ -209,11 +209,35 @@ function math_block(
   return true;
 }
 
+function getPackages(options: any): string[] {
+  if (options?.tex?.packages === undefined) {
+    return AllPackages;
+  }
+  const packages = options.tex.packages;
+  if (Array.isArray(packages)) {
+    // remove duplicates
+    return Array.from(new Set(packages));
+  }
+
+  const packages_to_add = packages['[+]'] ?? [];
+  const packages_to_remove = new Set(packages['[-]'] ?? []);
+
+  const combined = [...AllPackages, ...packages_to_add];
+  const result: string[] = [];
+  for (const pkg of combined) {
+    if (!packages_to_remove.has(pkg)) {
+      result.push(pkg);
+    }
+  }
+  // remove duplicates
+  return Array.from(new Set(result));
+}
+
 function plugin(md: MarkdownIt, options: any) {
   // Default options
 
   const documentOptions = {
-    InputJax: new TeX({ packages: AllPackages,  ...options?.tex }),
+    InputJax: new TeX({...options?.tex, packages: getPackages(options)}),
     OutputJax: new SVG({ fontCache: 'none',  ...options?.svg })
   }
   const convertOptions = {

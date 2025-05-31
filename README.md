@@ -7,7 +7,7 @@ This is a fork of [markdown-it-mathjax3](https://github.com/tani/markdown-it-mat
 You can use plugin's options.tex.packages to control which packages to load.
 - If it's not set, use the defaults (inherited from upstream)
 - If it's an array, overwrite the defaults
-- Otherwise, add `packages["[+]"]`(a list, if it exists) to and remove `packages["[-]"]` from the defaults (recommended)
+- Otherwise, add elements of `packages["[+]"]`(a list, if it exists) to the defaults, then remove elements of `packages["[-]"]`
 
 Usage scenarios:
 - Enable the 'physics' and 'setoptions' packages. (Other packages are already included in defaults or not working properly, i.e. 'require' and 'autoload')

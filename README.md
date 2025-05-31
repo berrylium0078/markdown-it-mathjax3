@@ -10,8 +10,8 @@ You can use plugin's options.tex.packages to control which packages to load.
 - Otherwise, add `packages["[+]"]`(a list, if it exists) to and remove `packages["[-]"]` from the defaults (recommended)
 
 Usage scenarios:
-- Enable the 'physics' and 'setoptions' packages. (Other packages are already included in defaults or not working properly, i.e. `require` and `autoload`)
-- Use `colorv2` instead of `color`.
+- Enable the 'physics' and 'setoptions' packages. (Other packages are already included in defaults or not working properly, i.e. 'require' and 'autoload')
+- Use 'colorv2' instead of 'color'.
 - Disable some packages you don't need(?)
 
 ## An example with Hexo

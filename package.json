@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com:nzt/markdown-it-mathjax3.git"
+    "url": "git+ssh://git@github.com:berrylium0078/markdown-it-mathjax3.git"
   },
   "keywords": [
     "markdown",
@@ -15,7 +15,7 @@
     "markdown-it-plugin",
     "markdown-it"
   ],
-  "author": "TANIGUCHI Masaya",
+  "author": "berrylium0078",
   "license": "MIT",
   "dependencies": {
     "juice": "^8.0.0",

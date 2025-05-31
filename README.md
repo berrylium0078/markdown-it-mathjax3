@@ -37,7 +37,7 @@ markdown_it_plus:
                   - color
 ```
 
-Test it by writing:
+Test it by writing a post:
 ```md
 colorv2:
 $\color{ #0000ff}{blue}\ default$
